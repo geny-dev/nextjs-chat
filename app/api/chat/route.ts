@@ -26,12 +26,31 @@ export async function POST(req: Request) {
     openai.apiKey = previewToken
   }
 
-  const res = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
-    messages,
-    temperature: 0.7,
-    stream: true
-  })
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      Authorization: process.env.CORCEL_API_KEY || ""
+    },
+    body: JSON.stringify({
+      model: 'cortext-ultra',
+      stream: true,
+      miners_to_query: 1,
+      top_k_miners_to_query: 40,
+      ensure_responses: true,
+      messages
+    })
+  }
+
+  const res = await fetch('https://api.corcel.io/cortext/text', options);
+
+  // const res = await openai.chat.completions.create({
+  //   model: 'gpt-3.5-turbo',
+  //   messages,
+  //   temperature: 0.7,
+  //   stream: true
+  // })
 
   const stream = OpenAIStream(res, {
     async onCompletion(completion) {
