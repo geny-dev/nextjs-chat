@@ -20,7 +20,7 @@ export async function generateMetadata({
     return {}
   }
 
-  const chat = await getChat(params.id, session.user.id)
+  const chat = await getChat(params.id, session.user.email)
   return {
     title: chat?.title.toString().slice(0, 50) ?? 'Chat'
   }
@@ -33,13 +33,13 @@ export default async function ChatPage({ params }: ChatPageProps) {
     redirect(`/sign-in?next=/chat/${params.id}`)
   }
 
-  const chat = await getChat(params.id, session.user.id)
+  const chat = await getChat(params.id, session.user.email)
 
   if (!chat) {
     notFound()
   }
 
-  if (chat?.userId !== session?.user?.id) {
+  if (chat?.userEmail !== session?.user?.email) {
     notFound()
   }
 

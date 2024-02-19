@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { auth } from '@/auth'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
-  IconGitHub,
+  IconGoogle,
   IconNextChat,
   IconSeparator,
   IconVercel
@@ -22,7 +22,7 @@ async function UserOrLogin() {
       {session?.user ? (
         <>
           <SidebarMobile>
-            <ChatHistory userId={session.user.id} />
+            <ChatHistory userEmail={session.user.email || undefined} />
           </SidebarMobile>
           <SidebarToggle />
         </>
@@ -61,8 +61,8 @@ export function Header() {
           rel="noopener noreferrer"
           className={cn(buttonVariants({ variant: 'outline' }))}
         >
-          <IconGitHub />
-          <span className="hidden ml-2 md:flex">GitHub</span>
+          <IconGoogle />
+          <span className="hidden ml-2 md:flex">Google</span>
         </a>
         <a
           href="https://github.com/vercel/nextjs-ai-chatbot/"

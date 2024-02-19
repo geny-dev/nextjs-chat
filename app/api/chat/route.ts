@@ -14,9 +14,10 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   const json = await req.json()
   const { messages, previewToken } = json
-  const userId = (await auth())?.user.id
+  console.log((await auth()));
+  const userEmail = (await auth())?.user.email
 
-  if (!userId) {
+  if (!userEmail) {
     return new Response('Unauthorized', {
       status: 401
     })
@@ -61,7 +62,7 @@ export async function POST(req: Request) {
       const payload = {
         id,
         title,
-        userId,
+        userEmail,
         createdAt,
         path,
         messages: [
@@ -73,7 +74,7 @@ export async function POST(req: Request) {
         ]
       }
       await kv.hmset(`chat:${id}`, payload)
-      await kv.zadd(`user:chat:${userId}`, {
+      await kv.zadd(`user:chat:${userEmail}`, {
         score: createdAt,
         member: `chat:${id}`
       })

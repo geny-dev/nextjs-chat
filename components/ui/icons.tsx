@@ -121,7 +121,7 @@ function IconVercel({ className, ...props }: React.ComponentProps<'svg'>) {
   )
 }
 
-function IconGitHub({ className, ...props }: React.ComponentProps<'svg'>) {
+function IconGithub({ className, ...props }: React.ComponentProps<'svg'>) {
   return (
     <svg
       role="img"
@@ -475,13 +475,31 @@ function IconChevronUpDown({
     </svg>
   )
 }
+function IconGoogle({ className, ...props }: React.ComponentProps<'svg'>) {
+  return (
+    <svg
+      role="img"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      className={cn('size-4', className)}
+      {...props}
+    >
+      <title>Google</title>
+      <path
+        d="M44.5 20H24v8h11.8C34.7 36.9 29.8 40 24 40c-8.8 0-16-7.2-16-16s7.2-16 16-16c4.4 0 8.4 1.7 11.3 4.7l6.4-6.4C37.6 6.1 31.3 4 24 4 11.8 4 2 13.8 2 26s9.8 22 22 22c12.1 0 22-9.8 22-22 0-1.3-.2-2.7-.5-4z"
+        fill="#EA4335"
+      />
+    </svg>
+  )
+}
 
 export {
   IconEdit,
   IconNextChat,
   IconOpenAI,
   IconVercel,
-  IconGitHub,
+  IconGithub,
   IconSeparator,
   IconArrowDown,
   IconArrowRight,
@@ -503,5 +521,6 @@ export {
   IconShare,
   IconUsers,
   IconExternalLink,
-  IconChevronUpDown
+  IconChevronUpDown,
+  IconGoogle
 }

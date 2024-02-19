@@ -5,16 +5,16 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { cache } from 'react'
 
 interface SidebarListProps {
-  userId?: string
+  userEmail?: string
   children?: React.ReactNode
 }
 
-const loadChats = cache(async (userId?: string) => {
-  return await getChats(userId)
+const loadChats = cache(async (userEmail?: string) => {
+  return await getChats(userEmail)
 })
 
-export async function SidebarList({ userId }: SidebarListProps) {
-  const chats = await loadChats(userId)
+export async function SidebarList({ userEmail }: SidebarListProps) {
+  const chats = await loadChats(userEmail)
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
